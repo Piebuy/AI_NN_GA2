@@ -13,8 +13,7 @@ import time
 from utils import play_game, play_game2
 from game_environment import Snake, SnakeNumpy
 import tensorflow as tf
-from agent import DeepQLearningAgent, PolicyGradientAgent,\
-                AdvantageActorCriticAgent, mean_huber_loss
+from agent import DeepQLearningAgent, PolicyGradientAgent,AdvantageActorCriticAgent, mean_huber_loss
 import json
 
 # some global variables
@@ -118,7 +117,13 @@ env2 = SnakeNumpy(board_size=board_size, frames=frames,
 # training loop
 model_logs = {'iteration':[], 'reward_mean':[],
               'length_mean':[], 'games':[], 'loss':[]}
-for index in tqdm(range(episodes)):
+best_loss = np.inf
+best_reward = -np.inf
+best_index_loss = 0
+best_index_reward = 0
+progress = tqdm(range(episodes))
+for index in progress:
+    
     if(agent_type in ['DeepQLearningAgent']):
         # make small changes to the buffer and slowly train
         _, _, _ = play_game2(env, agent, n_actions, epsilon=epsilon,
@@ -128,7 +133,25 @@ for index in tqdm(range(episodes)):
                        stateful=True)
         loss = agent.train_agent(batch_size=64,
                                  num_games=n_games_training, reward_clip=True)
+        
 
+        if len(env.recent_rewards) > 0:
+            avg_reward = np.mean(env.recent_rewards)
+        else:
+            avg_reward = 0
+
+        if index % 500 == 0:
+            if loss < best_loss:
+                best_loss = loss
+                best_index_loss = index
+
+            if avg_reward > best_reward:
+                best_reward = avg_reward
+                best_index_reward = index
+            progress.set_postfix({'best_loss': best_loss,
+                                  'best_index_loss': best_index_loss,
+                                  'best_reward': best_reward,
+                                  'best_index_reward': best_index_reward})
     if(agent_type in ['AdvantageActorCriticAgent']):
         # play a couple of games and train on all
         _, _, total_games = play_game2(env, agent, n_actions, epsilon=epsilon,
@@ -164,4 +187,8 @@ for index in tqdm(range(episodes)):
         agent.update_target_net()
         agent.save_model(file_path='models/{:s}'.format(version), iteration=(index+1))
         # keep some epsilon alive for training
-        epsilon = max(epsilon * decay, epsilon_end)
+        epsilon = max(epsilon * decay, epsilon_end) # type: ignore
+
+print('Training completed!')
+print('Best loss {:.4f} at iteration {:d}'.format(best_loss, best_index_loss))
+print('Best reward {:.2f} at iteration {:d}'.format(best_reward, best_index_reward))

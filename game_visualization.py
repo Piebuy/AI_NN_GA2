@@ -3,7 +3,7 @@
 
 import numpy as np
 from agent import DeepQLearningAgent, PolicyGradientAgent, \
-        AdvantageActorCriticAgent, HamiltonianCycleAgent, BreadthFirstSearchAgent
+        AdvantageActorCriticAgent #, HamiltonianCycleAgent, BreadthFirstSearchAgent
 from game_environment import Snake, SnakeNumpy
 from utils import visualize_game
 import json
@@ -21,7 +21,7 @@ with open('model_config/{:s}.json'.format(version), 'r') as f:
     n_actions = m['n_actions']
     obstacles = bool(m['obstacles'])
 
-iteration_list = [163500]
+iteration_list = [198000]
 max_time_limit = 398
 
 # setup the environment

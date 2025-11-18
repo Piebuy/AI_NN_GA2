@@ -1,5 +1,5 @@
 import numpy as np
-from agent import DeepQLearningAgent, BreadthFirstSearchAgent
+from agent import DeepQLearningAgent #, BreadthFirstSearchAgent
 from game_environment import Snake
 import matplotlib.pyplot as plt
 from tensorflow.keras import Model

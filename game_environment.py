@@ -761,6 +761,7 @@ class SnakeNumpy:
         self._board_size = board_size
         self._n_frames = frames
         self._n_games = games
+        self.recent_rewards = deque(maxlen=1000)
         self._rewards = {'out':-1, 'food':1, 'time':0, 'no_food':0}
         # start length is constrained to be less than half of board size
         # self._start_length = min(start_length, (board_size-2)//2)
@@ -1353,6 +1354,7 @@ class SnakeNumpy:
         # check if the current action is feasible and if food can be eaten
         reward, can_eat_food, termination_reason, new_head \
                     = self._check_if_done(action)
+        self.recent_rewards.extend(reward.tolist())
         # if not done, move the snake
         self._move_snake(action, can_eat_food, new_head)
         # update the direction of motion
