@@ -19,14 +19,14 @@ df_batch['loss_ma'] = df_batch['loss'].rolling(10).mean()
 fig, axs = plt.subplots(1, 1, figsize=(8, 8))
 axs.set_title('Snake Mean Length vs Training Batch Size')
 
-axs.plot(df_base['iteration'][:200], df_base['length_mean'][:200], 
+axs.plot(df_base['iteration'][:400], df_base['length_mean'][:400], 
         label='Batch Size 64', color='skyblue')
-axs.plot(df_batch['iteration'][:200], df_batch['length_mean'][:200], 
+axs.plot(df_batch['iteration'][:400], df_batch['length_mean'][:400], 
         label='Batch Size 128', color='bisque')
 
-axs.plot(df_base['iteration'][9:200], df_base['length_mean_ma'][9:200], 
+axs.plot(df_base['iteration'][9:400], df_base['length_mean_ma'][9:400], 
         label='Batch Size 64 Moving Average', color='blue')
-axs.plot(df_batch['iteration'][9:200], df_batch['length_mean_ma'][9:200], 
+axs.plot(df_batch['iteration'][9:400], df_batch['length_mean_ma'][9:400], 
         label='Batch Size 128 Moving Average', color='red')
 
 axs.set_ylabel('Mean Length')
