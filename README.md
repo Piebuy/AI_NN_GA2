@@ -15,7 +15,7 @@ the next action to take.
 ***
 Sample games from the best performing [agent](../models/v17.1/model_198000.pth)<br>
 <img width="400" height="400" src="https://github.com/Piebuy/AI_NN_GA2/blob/main/images/batch128/game_visual_v17.1_198000_14_ob_4.gif" alt="model v17.1 agent" ><img width="400" height="400" src="https://github.com/Piebuy/AI_NN_GA2/blob/main/images/batch128/game_visual_v17.1_198000_14_ob_1.gif" alt="model v17.1 agent" >
-<img width="400" height="400" src="https://github.com/Piebuy/AI_NN_GA2/blob/main/images/batch128/game_visual_v17.1_198000_14_ob_2.gif" alt="model v17.1 agent" ><img width="400" height="400" src="https://github.com/Piebuy/AI_NN_GA2/blob/main/images/batch128/game_visual_v17.1_198000_14_ob_3.gif" alt="model v17.1 agent" >
+<img width="400" height="400" src="https://github.com/Piebuy/AI_NN_GA2/blob/main/images/batch128/game_visual_v17.1_198000_14_ob_2.gif" alt="model v17.1 agent" >
 ***
 
 ## Code Structure
