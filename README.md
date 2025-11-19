@@ -1,3 +1,12 @@
+## Prenotes
+This README file is an edited version of the original [README](https://github.com/DragonWarrior15/snake-rl/blob/master/README.md) file. 
+
+To run this code you can use the uitnn environment with tensorflow installed.
+run training.py to train the model
+Tensorflow needs to be installed.
+If you want to make mp4 files you need to have FFmpeg installed and then run game_visualization.py
+For plots run comparison_plots.py
+
 # Snake Reinforcement Learning
 
 Code for training a Deep Reinforcement Learning agent to play the game of Snake.
