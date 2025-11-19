@@ -90,7 +90,7 @@ while(True):
 ```
 
 ## Experiments
-Configuration for different experiments can be found in [model_versions.json](../model_versions.json) file.
+Configuration for different experiments can be found in [model_versions.json](model_versions.json) file.
 We are only experimenting with v17.1 in this code
 
 ### Effect of Batch Size
